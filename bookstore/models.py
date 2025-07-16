@@ -13,3 +13,10 @@ class Book(models.Model):
     def __str__(self):
         return self.title
     
+class BookImage(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='book_images/', null=True, blank=True)
+
+    def __str__(self):
+        return f"Image for {self.book.title}"
+    
